@@ -7,6 +7,8 @@ namespace ASP.NET_WENSDAY_TASK.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        public const string SessionFirst_UserName = "_UserFirstName";
+        public const string SessionSecnod_UserName = "_UserSecnodName";
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -15,6 +17,10 @@ namespace ASP.NET_WENSDAY_TASK.Controllers
 
         public IActionResult Index()
         {
+            string? UserFirstName = HttpContext.Session.GetString(SessionFirst_UserName);
+            string? UserSecondName = HttpContext.Session.GetString(SessionSecnod_UserName);
+            ViewData["UserFirstName"] = UserFirstName;
+            ViewData["UserSecondName"] = UserSecondName;
             return View();
         }
 
